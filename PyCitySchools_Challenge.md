@@ -1,19 +1,3 @@
-# School_District_Analysis
-Analysis of School District data using dataframes with Pandas
-
-## Overview:
-In this challenge we are given a task by Maria, a chief Data Scientist of a school district, to gather the math and reading scores from a standardized test across multiple schools. We were tasked to use python and the pandas library to do simple analysis of the data set given to us and create meta-data tables that analyzes budget, school size, school type, and grade level to see what variable affects math and reading scores. 
-
-## Purpose:
-The purpose of this challenge is to help us practice using pandas and the dataframe library to perform simple analysis that can be otherwise be complex by using a bruteforce method in python. We are still using python in our analysis however we use the pandas library to do most of the "heavy-lifting" that would require us to use nested for-loops in python. The purpose here is to familiarize ourselves with common Data Science methods that would be used day-to-day. 
-
-## Resources
-* Data Source: election_results.csv
-* Software Python 3.7.4, Visual Studio Code, 1.56.2
-
-## Analysis:
-
-*Code:* 
 ```python
 # Dependencies and Setup
 import pandas as pd
@@ -206,8 +190,75 @@ print(tom_9th_df)
 #replacing reading_scores for 9th graders using np.nan on student_data_df
 student_data_df.loc[(student_data_df.school_name =='Thomas High School') & (student_data_df.grade =='9th'), ["reading_score"]] = np.nan
 student_data_df
-
 ```
+
+           Student ID      student_name gender grade         school_name  \
+    37537       37537       Erik Snyder      M   9th  Thomas High School   
+    37538       37538    Tanya Martinez      F   9th  Thomas High School   
+    37539       37539     Noah Erickson      M   9th  Thomas High School   
+    37540       37540      Austin Meyer      M   9th  Thomas High School   
+    37543       37543   Madison Hampton      F   9th  Thomas High School   
+    ...           ...               ...    ...   ...                 ...   
+    39152       39152        Lori Moore      F   9th  Thomas High School   
+    39153       39153   William Hubbard      M   9th  Thomas High School   
+    39157       39157  Kristen Gonzalez      F   9th  Thomas High School   
+    39164       39164    Joseph Anthony      M   9th  Thomas High School   
+    39167       39167    Rebecca Tanner      F   9th  Thomas High School   
+    
+           reading_score  math_score  
+    37537             80          90  
+    37538             71          69  
+    37539             86          76  
+    37540             73          96  
+    37543             82          73  
+    ...              ...         ...  
+    39152             98          84  
+    39153             80          75  
+    39157             79          94  
+    39164             97          76  
+    39167             73          84  
+    
+    [461 rows x 7 columns]
+           Student ID      student_name gender grade         school_name  \
+    37537       37537       Erik Snyder      M   9th  Thomas High School   
+    37538       37538    Tanya Martinez      F   9th  Thomas High School   
+    37539       37539     Noah Erickson      M   9th  Thomas High School   
+    37540       37540      Austin Meyer      M   9th  Thomas High School   
+    37543       37543   Madison Hampton      F   9th  Thomas High School   
+    ...           ...               ...    ...   ...                 ...   
+    39152       39152        Lori Moore      F   9th  Thomas High School   
+    39153       39153   William Hubbard      M   9th  Thomas High School   
+    39157       39157  Kristen Gonzalez      F   9th  Thomas High School   
+    39164       39164    Joseph Anthony      M   9th  Thomas High School   
+    39167       39167    Rebecca Tanner      F   9th  Thomas High School   
+    
+           reading_score  math_score  
+    37537            NaN          90  
+    37538            NaN          69  
+    37539            NaN          76  
+    37540            NaN          96  
+    37543            NaN          73  
+    ...              ...         ...  
+    39152            NaN          84  
+    39153            NaN          75  
+    39157            NaN          94  
+    39164            NaN          76  
+    39167            NaN          84  
+    
+    [461 rows x 7 columns]
+    
+
+    C:\Users\Admin\anaconda3\lib\site-packages\pandas\core\indexing.py:1720: SettingWithCopyWarning: 
+    A value is trying to be set on a copy of a slice from a DataFrame.
+    Try using .loc[row_indexer,col_indexer] = value instead
+    
+    See the caveats in the documentation: https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+      self._setitem_single_column(loc, value, pi)
+    
+
+
+
+
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -3526,55 +3577,3 @@ type_summary_df
 ```python
 
 ```
-
-
-### Overview of the school district analysis: 
-
-- The first step of any analysis is to familiarize ourselves with the data set given to us. We were given two CSVs: one that contains school information such as school type, school size, and budget and the other one student information that contained reading score, math score, grade level, and which school they attended. 
-
-- The second step of this analysis was to make sure the data was cleaned and complete. We shouldn't be working on data that has missing values that would affect our overall analysis and we should be working out of one data set instead of two. In this step we checked for any error in names and removed any silly suffixes or prefixes using python. We used a simple for-loop to replace these suffixes with an empty string. Once we cleaned the name column we were tasked to use the .loc method to replace all of Thomas High School 9th grade class scores with NaN. By combining both pandas and numpy we were able to narrow down to a dataset we wanted and chagned their scores due to a possibility of cheating. Once we replaced our values in data set we combined both our csv so we can have one completed dataframe to do the analysis. This helps prevent any confusion so we can refer to only one dataframe and it is easier to present. 
-
-- The third step would to do our analysis. Our analysis included finding the count() of students per grade, students per high school and using simple logic operators to find the total passing reading and math count per criteria. To get the percentage per criteria, we took the total passing math/reading count and divided it by the total count. We did a similar analysis with the Per student budget by dividing the total budget by the total number of students. 
-
-- The fourth and final step was to use bins and grouping to tell a clear picture of what criteria affects student scores. Pandas has a powerful tool that help visualize this by creating bins and categorizing data with these bins.  
-
-
-
-
-How is the district summary affected?
-How is the school summary affected?
-How does replacing the ninth graders’ math and reading scores affect Thomas High School’s performance relative to the other schools?
-
-### Results
-Overall there are 15 schools with 39,170 students. From the below image, we can see that the Average Math Score and the Average Reading score are passing scores and individually have greater than 70% of the students passing either Math or Reading; however the overall passing (meaning passing both reading and math) is roughly 65%. 
-
-
-![overall school district summary](http://via.placeholder.com/200x150 "Overall School District Summary")
-
-
-The overall school DataFrame is below. We can see that the top 5 schools and bottom 5 schools all have different school types and different student counts. We can assume from this brief overview alone that school type and more importantly school size affects a student overall compared to the budget. 
-
-
-![Per School Summary DF](http://via.placeholder.com/200x150 "Per School Summary DF")
-
-
-Top 5 and bottom 5 performing schools, based on the overall passing rate.
-
-
-![Top 5 Schools DF](http://via.placeholder.com/200x150 "Top 5 Schools DF")
-![Bottom 5 Schools DF](http://via.placeholder.com/200x150 "Bottom 5 Schools DF")
-
-
-
-Results: Using bulleted lists and images of DataFrames as support, address the following questions.
-How does replacing the ninth-grade scores affect the following:
-Math and reading scores by grade
-Scores by school spending
-Scores by school size
-Scores by school type
-
-### Summary: Summarize four changes in the updated school district analysis after reading and math scores for the ninth grade at Thomas High School have been replaced with NaNs.
-For this part of the Challenge, write a report that summarizes your updated analysis and compares it with the results from the module.
-
-## Challenges and Difficulties
-
