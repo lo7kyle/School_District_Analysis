@@ -5,11 +5,11 @@ Analysis of School District data using dataframes with Pandas
 In this challenge we are given a task by Maria, a chief Data Scientist of a school district, to gather the math and reading scores from a standardized test across multiple schools. We were tasked to use python and the pandas library to do simple analysis of the data set given to us and create meta-data tables that analyzes budget, school size, school type, and grade level to see what variable affects math and reading scores. 
 
 ## Purpose:
-The purpose of this challenge is to help us practice using pandas and the dataframe library to perform simple analysis that can be otherwise be complex by using a bruteforce method in python. We are still using python in our analysis however we use the pandas library to do most of the "heavy-lifting" that would require us to use nested for-loops in python. The purpose here is to familiarize ourselves with common Data Science methods that would be used day-to-day. 
+The purpose of this challenge is to help us practice using pandas and the data frame library to perform simple analysis that can be otherwise be complex by using a brute force method in python. We are still using python in our analysis however we use the pandas library to do most of the "heavy-lifting" that would require us to use nested for-loops in python. The purpose here is to familiarize ourselves with common Data Science methods that would be used day-to-day.
 
 ## Resources
 * Data Source: election_results.csv
-* Software Python 3.7.4, Visual Studio Code, 1.56.2
+* Software Python 3.8.8, Conda 4.10.1, Jupyter Notebook 6.3.0
 
 ## Analysis:
 
@@ -1688,69 +1688,6 @@ twelfth_grade_reading_scores = twelfth_graders.groupby(["school_name"]).mean()["
 print(ninth_grade_reading_scores)
 ```
 
-           Student ID      student_name gender grade         school_name  \
-    0               0      Paul Bradley      M   9th   Huang High School   
-    4               4        Bonnie Ray      F   9th   Huang High School   
-    5               5     Bryan Miranda      M   9th   Huang High School   
-    12             12   Brittney Walker      F   9th   Huang High School   
-    13             13      William Long      M   9th   Huang High School   
-    ...           ...               ...    ...   ...                 ...   
-    39152       39152        Lori Moore      F   9th  Thomas High School   
-    39153       39153   William Hubbard      M   9th  Thomas High School   
-    39157       39157  Kristen Gonzalez      F   9th  Thomas High School   
-    39164       39164    Joseph Anthony      M   9th  Thomas High School   
-    39167       39167    Rebecca Tanner      F   9th  Thomas High School   
-    
-           reading_score  math_score  School ID      type  size   budget  
-    0               66.0        79.0          0  District  2917  1910635  
-    4               97.0        84.0          0  District  2917  1910635  
-    5               94.0        94.0          0  District  2917  1910635  
-    12              64.0        79.0          0  District  2917  1910635  
-    13              71.0        79.0          0  District  2917  1910635  
-    ...              ...         ...        ...       ...   ...      ...  
-    39152            NaN         NaN         14   Charter  1635  1043130  
-    39153            NaN         NaN         14   Charter  1635  1043130  
-    39157            NaN         NaN         14   Charter  1635  1043130  
-    39164            NaN         NaN         14   Charter  1635  1043130  
-    39167            NaN         NaN         14   Charter  1635  1043130  
-    
-    [11408 rows x 11 columns]
-    school_name
-    Bailey High School       77.083676
-    Cabrera High School      83.094697
-    Figueroa High School     76.403037
-    Ford High School         77.361345
-    Griffin High School      82.044010
-    Hernandez High School    77.438495
-    Holden High School       83.787402
-    Huang High School        77.027251
-    Johnson High School      77.187857
-    Pena High School         83.625455
-    Rodriguez High School    76.859966
-    Shelton High School      83.420755
-    Thomas High School             NaN
-    Wilson High School       83.085578
-    Wright High School       83.264706
-    Name: math_score, dtype: float64
-    school_name
-    Bailey High School       81.303155
-    Cabrera High School      83.676136
-    Figueroa High School     81.198598
-    Ford High School         80.632653
-    Griffin High School      83.369193
-    Hernandez High School    80.866860
-    Holden High School       83.677165
-    Huang High School        81.290284
-    Johnson High School      81.260714
-    Pena High School         83.807273
-    Rodriguez High School    80.993127
-    Shelton High School      84.122642
-    Thomas High School             NaN
-    Wilson High School       83.939778
-    Wright High School       83.833333
-    Name: reading_score, dtype: float64
-    
-
 
 ```python
 # Combine each Series for average math scores by school into single data frame.
@@ -2552,29 +2489,6 @@ spending_bins = [0, 586, 630, 645, 675]
 # use cut to segment and sort data
 pd.cut(per_school_capita, spending_bins)
 ```
-
-
-
-
-    Bailey High School       (586, 630]
-    Cabrera High School        (0, 586]
-    Figueroa High School     (630, 645]
-    Ford High School         (630, 645]
-    Griffin High School      (586, 630]
-    Hernandez High School    (645, 675]
-    Holden High School         (0, 586]
-    Huang High School        (645, 675]
-    Johnson High School      (645, 675]
-    Pena High School         (586, 630]
-    Rodriguez High School    (630, 645]
-    Shelton High School      (586, 630]
-    Thomas High School       (630, 645]
-    Wilson High School         (0, 586]
-    Wright High School         (0, 586]
-    dtype: category
-    Categories (4, interval[int64]): [(0, 586] < (586, 630] < (630, 645] < (645, 675]]
-
-
 
 
 ```python
@@ -3534,47 +3448,56 @@ type_summary_df
 
 - The second step of this analysis was to make sure the data was cleaned and complete. We shouldn't be working on data that has missing values that would affect our overall analysis and we should be working out of one data set instead of two. In this step we checked for any error in names and removed any silly suffixes or prefixes using python. We used a simple for-loop to replace these suffixes with an empty string. Once we cleaned the name column we were tasked to use the .loc method to replace all of Thomas High School 9th grade class scores with NaN. By combining both pandas and numpy we were able to narrow down to a dataset we wanted and chagned their scores due to a possibility of cheating. Once we replaced our values in data set we combined both our csv so we can have one completed dataframe to do the analysis. This helps prevent any confusion so we can refer to only one dataframe and it is easier to present. 
 
-- The third step would to do our analysis. Our analysis included finding the count() of students per grade, students per high school and using simple logic operators to find the total passing reading and math count per criteria. To get the percentage per criteria, we took the total passing math/reading count and divided it by the total count. We did a similar analysis with the Per student budget by dividing the total budget by the total number of students. 
+- The third step would be to do our analysis. Our analysis included finding the count() of students per grade, students per high school and using simple logic operators to find the total passing reading and math count per criteria. To get the percentage per criteria, we took the total passing math/reading count and divided it by the total count. We did a similar analysis with the Per student budget by dividing the total budget by the total number of students. 
 
 - The fourth and final step was to use bins and grouping to tell a clear picture of what criteria affects student scores. Pandas has a powerful tool that help visualize this by creating bins and categorizing data with these bins.  
 
 
+## Results
+Overall there are 15 schools with 39,170 students. From the below image, we can see that the Average Math Score and the Average Reading score are passing scores and individually have greater than 70% of the students passing either Math or Reading; however, the overall passing (meaning passing both reading and math) is roughly 65%. 
 
 
-How is the district summary affected?
-How is the school summary affected?
-How does replacing the ninth graders’ math and reading scores affect Thomas High School’s performance relative to the other schools?
-
-### Results
-Overall there are 15 schools with 39,170 students. From the below image, we can see that the Average Math Score and the Average Reading score are passing scores and individually have greater than 70% of the students passing either Math or Reading; however the overall passing (meaning passing both reading and math) is roughly 65%. 
+![overall school district summary](https://github.com/lo7kyle/School_District_Analysis/blob/main/Resources/overall_school_district_df.PNG "Overall School District Summary")
 
 
-![overall school district summary](http://via.placeholder.com/200x150 "Overall School District Summary")
+The overall school Data Frame is below. We can see that the top 5 schools and bottom 5 schools all have different school types and different student counts. We can assume from this brief overview alone that school type and more importantly school size affects a student overall compared to the budget. 
 
 
-The overall school DataFrame is below. We can see that the top 5 schools and bottom 5 schools all have different school types and different student counts. We can assume from this brief overview alone that school type and more importantly school size affects a student overall compared to the budget. 
-
-
-![Per School Summary DF](http://via.placeholder.com/200x150 "Per School Summary DF")
+![Per School Summary DF](https://github.com/lo7kyle/School_District_Analysis/blob/main/Resources/per_school_summary.PNG "Per School Summary DF")
 
 
 Top 5 and bottom 5 performing schools, based on the overall passing rate.
 
 
-![Top 5 Schools DF](http://via.placeholder.com/200x150 "Top 5 Schools DF")
-![Bottom 5 Schools DF](http://via.placeholder.com/200x150 "Bottom 5 Schools DF")
+![Top 5 Schools DF](https://github.com/lo7kyle/School_District_Analysis/blob/main/Resources/top_schools.PNG "Top 5 Schools DF")
+![Bottom 5 Schools DF](https://github.com/lo7kyle/School_District_Analysis/blob/main/Resources/bottom_schools.PNG "Bottom 5 Schools DF")
+
+### Math and Reading Scores by Grade
+The next analysis was analysis of scores by grades. We can see that there is very little correlation between your grade level and your reading level. This is probably due to how English is taught in schools these days. You analysis skills probably will develop due to more exposure; however reading becomes less about understanding grammar and vocabulary and more about analysis of different literature like plays compared to biography. The same can go with math. Every year is taught from Geometry to Calculus. I personally took Geometry in 9th grade and took Calculus in 12th and I can honestly say that I have forgotten a good chunk of geometry since I haven't used it in a long time. If this standardized test is a blend of general math then everyone has just as fair of chance at scoring well. 
 
 
+![math_Score_bygrade](https://github.com/lo7kyle/School_District_Analysis/blob/main/Resources/math_scores_bygrade.PNG "Math Score By Grade")
 
-Results: Using bulleted lists and images of DataFrames as support, address the following questions.
-How does replacing the ninth-grade scores affect the following:
-Math and reading scores by grade
-Scores by school spending
-Scores by school size
-Scores by school type
+![reading_Score_bygrade](https://github.com/lo7kyle/School_District_Analysis/blob/main/Resources/reading_scores_bygrade.PNG "Reading Score By Grade")
 
-### Summary: Summarize four changes in the updated school district analysis after reading and math scores for the ninth grade at Thomas High School have been replaced with NaNs.
-For this part of the Challenge, write a report that summarizes your updated analysis and compares it with the results from the module.
+### Scores by School Spending
+From the below screenshot of the data frame we can see that a schools budget isn't indicative of performance. I have grouped school size and school type because those are the indicators of how successful a school will be. Charter Schools are private schools and cost money to attend whereas the district schools are your public schools. Just because Charter schools charge money for enrollment doesn't mean they have a bigger budget. Depending on the school size a school can request for more money from the state or local government. Below is a chart created using bins and labels to categorize the spending per student and the passing rates and scores.
+
+
+![Spending_Summary](https://github.com/lo7kyle/School_District_Analysis/blob/main/Resources/spending_summary.PNG "Spending Summary")
+
+
+### Scores by School Size & Scores by School Type
+School size and school types in my opinion are the most important indicators of the success of a student. It is proven that classes with smaller class sizes have a higher success rate because a teacher can better focus on and have more time per student. A teacher grading 200 homework compared to grading only 100 homework can give a teacher more time for constructive feedback. Yes, there are TA's, however the quality of teaching does go down with more people. With a bigger school you also consider students who are not as fast learners as well. You have a bigger data set with more variables than with a school with a smaller size. This goes hand in hand with school types. Charter schools by default will have less people because why would you pay for someone to go to high school when it is free. This means the people attending charter schools are from affluent families that really focuses on education. These students were probably taught algebra in middle school already and are ahead of the curve. The only reason why you would pay for a charter school is to get your child ahead because you value education. I'm not concluding or even saying that public school systems don't teach at a high caliber or that students care less, I am merely stating that when you surround yourself with people who only want to be the best, you will follow suit. 
+
+
+![Size_Summary](https://github.com/lo7kyle/School_District_Analysis/blob/main/Resources/size_summary.PNG "Size Summary")
+
+![Type_Summary](https://github.com/lo7kyle/School_District_Analysis/blob/main/Resources/type_summary.PNG "Type Summary")
+
+### Summary:
+Taking a look at the results of our analysis we can conclude that school size and school type are indicators of student performance. This is a result of lower student to teacher ratios and the effect of external variables affecting the students. As mentioned above in the results, if parents have to pay for a child’s high school, the parent are affluent and probably come from a higher education background. With students around you that are of higher caliber you will also perform better. We also see that grade level and school spending are not indicators probably due to factors we can't really show with this data set. Where is all this spending going to? We don't have the budget information. We can also see that by removing the 9th graders scores from Thomas High School, the average for THS went up; however, this result might be an outlier. We already see in our results that grade levels don't affect the scores enough to see a possible indicator. 
 
 ## Challenges and Difficulties
+There were many challenges in this week’s challenge. One challenge I ran into was not understanding how to use .loc and its importance. I also didn't finish reading the challenge before starting so there were a lot of information I missed. It wasn't until I have already finished the challenge where I went to re-read the deliverables for my analysis where I saw some hints on how to use .loc. This was a mistake on my behalf, but this is also where I felt like I learned the most. When trying replace the THS 9th grader's scores with NaN I didn't know that we could use numpy so I was trying to .tolist() the column then trying to multiply it by 0. This just resulted in having the list be 0 which will affect our analysis and we didn't want that. Another method I tried doing was creating a new dictionary with the NaN values for the THS 9th graders using a for loop to check for the conditions, then replacing the values with NaN but it didn't seem right and I wouldn't be using the .loc method. After trying many times I learned that we can simply set our .loc df to a value which simplified everything! This truly was a learning lesson on how the pandas and numpy library can simplify analytics that other coding languages would have to brute force. Besides the coding aspect of this challenge, another difficulty of analysis comes from the limited data set. We can't see where the school spends their budget, and we don't have the information of math levels or reading levels of each student and only their score. Maybe a student might be at 6th grade reading level but is in 12th grade; but the school is known for its football program. There are many factors we can investigate that might narrow down to a solution to improve the overall reading and math scores.
 
